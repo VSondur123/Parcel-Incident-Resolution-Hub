@@ -2,30 +2,87 @@
 
 ## 1. Overview
 
-ParcelResolve affects multiple groups because parcel incidents cross organizational boundaries. Different stakeholders may prioritize different outcomes, such as resolution speed, operational cost, accuracy, customer satisfaction, fairness, security, or maintainability.
+ParcelResolve is an in-house product used within a large e-commerce or delivery organization.
+
+The product sits inside an existing operational environment and focuses specifically on resolving parcel incidents. Because of this, the stakeholder structure should distinguish between:
+
+- the organization using the product;
+- the product owner responsible for ParcelResolve;
+- customers who initiate or are affected by incidents;
+- operational users who work with the resolution process;
+- IT / integration stakeholders who support the product.
 
 The product therefore needs to balance:
 
-**Resolution speed + accuracy + operational cost + fairness + customer experience + security**
+**Resolution speed + accuracy + operational cost + customer experience + fairness + security**
 
 ---
 
 # 2. Main Stakeholders
 
-## ST-001 — Customers / Recipients
+## ST-001 — Host / Customer Organization
 
-**Role / interest:** Report parcel incidents, provide information, receive progress updates and outcomes.
+**Role / interest:** The large e-commerce or delivery organization that uses ParcelResolve within its existing operational environment.
+
+**Goals:**
+- Reduce the cost and effort of resolving parcel incidents
+- Improve resolution speed and consistency
+- Improve customer experience
+- Reduce recurring operational problems
+- Integrate incident resolution with existing operations
+- Gain visibility into incident performance
+
+**Concerns:**
+- Incorrect automated decisions
+- Increased operational cost
+- Poor adoption by operational users
+- Disruption to existing operations
+- Security and data protection risks
+- The product becoming too complex or broad
+
+**Influence:** High
+
+---
+
+## ST-002 — Product Owner
+
+**Role / interest:** Owns ParcelResolve and is responsible for product direction, prioritization, and business value.
+
+**Goals:**
+- Solve a meaningful operational problem
+- Deliver measurable product value
+- Prioritize the most important incident-resolution capabilities
+- Achieve adoption by intended users
+- Keep the product aligned with the organization's needs
+
+**Concerns:**
+- Scope creep
+- Development and operating cost
+- Low user adoption
+- Automation failing to deliver expected value
+- Requirements becoming unnecessarily complex
+- Misalignment between product capabilities and actual operational needs
+
+**Influence:** High
+
+---
+
+## ST-003 — Customer / Service Provider
+
+**Role / interest:** The external party affected by a parcel incident who may initiate an incident and receive relevant communication and resolution outcomes.
+
+This may be an individual customer or an external service provider, depending on the organization's business model.
 
 **Goals:**
 - Fast resolution
-- Fair treatment
 - Accurate information
-- Minimal effort when reporting or providing information
-- Clear communication about what happens next
+- Clear communication
+- Minimal effort when reporting an incident
+- Fair handling of the incident
 
 **Concerns:**
 - Long resolution times
-- Repeated requests for the same information
+- Repeated requests for information
 - Incorrect incident classification
 - Incorrect resolution decisions
 - Poor or delayed communication
@@ -34,228 +91,98 @@ The product therefore needs to balance:
 
 ---
 
-## ST-002 — Customer Service Staff
+## ST-004 — Operational User
 
-**Role / interest:** Handle customer-reported incidents and intervene when automated resolution cannot safely complete a case.
+**Role / interest:** Internal user who works with ParcelResolve to handle incidents and perform required actions.
+
+Depending on the organization's structure, operational users may include customer service, delivery operations, warehouse/distribution, or other relevant operational roles.
 
 **Goals:**
-- Reduce repetitive manual work
-- Quickly understand incident status
-- Have clear next actions
-- Resolve customer issues efficiently
-- Receive sufficient information to handle exceptions
+- Clear next actions
+- Reduced repetitive manual work
+- Accurate incident information
+- Clear responsibility
+- Efficient handling of incidents
+- Easy identification of overdue or escalated work
 
 **Concerns:**
 - Incorrect automation
-- Incomplete incident information
+- Incomplete or unreliable information
+- Unclear responsibilities
+- Excessive workload
 - Difficult exception handling
-- Lack of visibility into automated decisions
 - Having to work around the system rather than with it
 
 **Influence:** High
 
 ---
 
-## ST-003 — Delivery Operations Staff
+## ST-005 — IT / Integration Team
 
-**Role / interest:** Investigate and resolve operational delivery incidents.
-
-**Goals:**
-- Detect problems early
-- Receive clear and actionable tasks
-- Resolve incidents efficiently
-- Reduce recurring delivery failures
-- Have clear responsibility for actions
-
-**Concerns:**
-- Excessive workload
-- False or unnecessary incidents
-- Poor-quality source data
-- Unclear responsibility
-- Automation creating inappropriate tasks
-
-**Influence:** High
-
----
-
-## ST-004 — Warehouse / Distribution Staff
-
-**Role / interest:** Perform operational actions such as locating, checking, or verifying parcels.
-
-**Goals:**
-- Receive precise and actionable requests
-- Provide accurate parcel information
-- Complete required actions efficiently
-- Avoid unnecessary investigations
-
-**Concerns:**
-- Incorrect requests
-- Duplicate requests
-- Unnecessary workload
-- Missing information needed to complete actions
-
-**Influence:** Medium
-
----
-
-## ST-005 — Delivery Personnel
-
-**Role / interest:** Provide delivery-related information and perform relevant operational actions.
-
-**Goals:**
-- Maintain accurate delivery records
-- Receive clear requests
-- Resolve incidents efficiently
-- Be treated fairly when incidents are investigated
-
-**Concerns:**
-- Incorrect attribution of responsibility
-- Unnecessary investigations
-- Inaccurate or incomplete delivery data
-- Automated decisions based on unreliable information
-
-**Influence:** Medium
-
----
-
-## ST-006 — Operations Management
-
-**Role / interest:** Oversee operational performance, incident resolution, cost, and escalation.
-
-**Goals:**
-- Reduce resolution time
-- Reduce operational cost
-- Improve process consistency
-- Improve visibility into incident performance
-- Identify recurring operational problems
-- Ensure appropriate use of automation
-
-**Concerns:**
-- High operating costs
-- Poor resolution performance
-- Excessive escalations
-- Automation errors
-- Lack of operational visibility
-
-**Influence:** High
-
----
-
-## ST-007 — IT / System Integration Team
-
-**Role / interest:** Build, maintain, operate, and integrate ParcelResolve with existing systems.
+**Role / interest:** Responsible for implementing, operating, maintaining, securing, and integrating ParcelResolve with the organization's existing systems.
 
 **Goals:**
 - Reliable integrations
 - High availability
 - Maintainable architecture
 - Secure data exchange
-- Manageable operational complexity
+- Manageable technical complexity
+- Stable operation alongside existing systems
 
 **Concerns:**
 - Complex integrations
 - Poor source-data quality
-- Changes in external/internal systems
+- Changes to existing systems
 - Integration failures
 - Maintenance burden
 - Security vulnerabilities
+- Unclear system responsibilities
 
 **Influence:** High
 
 ---
 
-## ST-008 — Business / Product Owner
+# 3. Stakeholder Relationships and Conflicts
 
-**Role / interest:** Own product direction, business value, prioritization, and adoption.
+## Customer vs. Host Organization
 
-**Goals:**
-- Solve a meaningful business problem
-- Deliver measurable operational benefits
-- Improve customer experience
-- Achieve adoption by operational teams
-- Keep the product aligned with organizational strategy
+The customer or service provider may expect an immediate replacement, compensation, or another fast resolution.
 
-**Concerns:**
-- Development and operating cost
-- Scope creep
-- Low user adoption
-- Automation failing to deliver expected value
-- Product becoming too complex
+The host organization may require verification and evidence before taking costly or irreversible action.
 
-**Influence:** High
+**Tension:** Fast customer resolution vs. verification and organizational cost control.
 
 ---
 
-## ST-009 — Data Protection / Security Stakeholders
+## Automation vs. Operational User
 
-**Role / interest:** Ensure customer and operational information is handled securely and appropriately.
+Automation can reduce repetitive work and improve consistency, but incorrect automation can create additional work or lead to incorrect outcomes.
 
-**Goals:**
-- Appropriate access control
-- Secure information handling
-- Appropriate use of customer data
-- Compliance with organizational security and privacy requirements
-
-**Concerns:**
-- Excessive data collection
-- Unauthorized access
-- Inappropriate data sharing
-- Poor retention practices
-- Security vulnerabilities
-
-**Influence:** High
+**Tension:** Automation and efficiency vs. operational control and reliable decisions.
 
 ---
 
-# 3. Stakeholder Conflicts and Tensions
+## Product Owner vs. Host Organization
 
-## Customer vs. Organization
+The Product Owner needs to prioritize product capabilities and maintain a manageable product scope, while the host organization may have many operational needs and requests.
 
-Customers may expect immediate replacement, compensation, or another quick resolution. The organization may require verification before taking costly or irreversible action.
-
-**Tension:** Speed and customer satisfaction vs. verification and cost control.
+**Tension:** Focused product development vs. broad organizational demands.
 
 ---
 
-## Automation vs. Human Control
+## Host Organization vs. IT / Integration Team
 
-Automation can reduce workload and improve consistency, but incorrect automation can produce costly or unfair outcomes.
+The organization may want new capabilities and integrations quickly, while IT needs to maintain reliability, security, maintainability, and technical stability.
 
-**Tension:** Efficiency and scalability vs. accuracy, transparency, and controlled exceptions.
-
----
-
-## Operations Management vs. Operational Teams
-
-Management may prioritize lower costs and faster resolution, while operational teams may need additional time, resources, or investigation to resolve complex cases correctly.
-
-**Tension:** Efficiency targets vs. practical operational constraints.
+**Tension:** Business delivery speed vs. technical quality and operational sustainability.
 
 ---
 
-## Customer Service vs. Operations
+## Customer vs. Operational User
 
-Customer service may prefer immediate customer-facing action, while delivery or warehouse operations may prefer investigation or parcel recovery before a final decision.
+The customer wants a fast and simple resolution, while the operational user may need to complete verification or additional actions before the incident can be resolved.
 
-**Tension:** Immediate customer resolution vs. operational verification/recovery.
-
----
-
-## Delivery Personnel vs. Organization
-
-Delivery personnel may be concerned that incident processes incorrectly attribute responsibility to them.
-
-**Tension:** Organizational accountability vs. fairness and accuracy of attribution.
-
-This requires reliable data and transparent reasoning around incident handling.
-
----
-
-## IT vs. Business / Product
-
-The business may want new capabilities and integrations quickly, while IT needs to maintain reliability, security, maintainability, and manageable technical complexity.
-
-**Tension:** Delivery speed and feature scope vs. technical quality and operational stability.
+**Tension:** Customer expectations vs. operational verification and process requirements.
 
 ---
 
@@ -263,20 +190,16 @@ The business may want new capabilities and integrations quickly, while IT needs 
 
 ### Primary stakeholders
 
-1. Business / Product Owner
-2. Operations Management
-3. Customer Service Staff
-4. Delivery Operations Staff
-5. Customers / Recipients
+1. **ST-001 — Host / Customer Organization**
+2. **ST-002 — Product Owner**
+3. **ST-004 — Operational User**
+4. **ST-003 — Customer / Service Provider**
 
-### Supporting stakeholders
+### Supporting stakeholder
 
-6. Warehouse / Distribution Staff
-7. Delivery Personnel
-8. IT / System Integration Team
-9. Data Protection / Security Stakeholders
+5. **ST-005 — IT / Integration Team**
 
-This priority is provisional and may change as requirements, workflows, and business constraints become clearer.
+This priority is provisional and may change as detailed requirements, workflows, and organizational constraints become clearer.
 
 ---
 
@@ -290,10 +213,25 @@ A successful product must balance:
 - accurate decisions;
 - manageable operational workload;
 - clear accountability;
-- fair handling of incidents;
-- good customer communication;
+- fair customer handling;
+- clear customer communication;
 - reliable automation;
 - secure information handling;
 - sustainable technical operation.
 
-The stakeholder analysis should therefore be revisited as detailed requirements and business rules are developed.
+The stakeholder analysis should be revisited as detailed requirements and business rules are developed.
+
+---
+
+# 6. Stakeholder Implications for the Product
+
+The stakeholder analysis suggests that ParcelResolve should:
+
+1. Provide clear ownership for active incidents and actions.
+2. Automate routine cases where predefined rules and available evidence are sufficient.
+3. Make exceptions visible and manageable for operational users.
+4. Provide customers with timely and understandable communication.
+5. Use existing organizational systems as sources of operational information.
+6. Protect customer and operational data through appropriate access and security controls.
+7. Provide the Product Owner and host organization with visibility into resolution performance.
+8. Keep the product focused on incident resolution rather than replacing surrounding operational systems.

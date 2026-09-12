@@ -6,7 +6,7 @@
 
 The system is designed to help an organization move a parcel incident from the moment it is detected or reported through assessment, action, monitoring, verification, and closure.
 
-ParcelResolve is an incident-resolution layer that works with existing organizational systems rather than replacing them.
+ParcelResolve is an incident-resolution layer that works with the organization's existing operational systems rather than replacing them.
 
 ---
 
@@ -19,7 +19,6 @@ Large e-commerce and delivery organizations handle very high volumes of parcels.
 - Misdelivered parcels
 - Failed deliveries
 - Delivery disputes
-- Damaged parcels
 
 These incidents can require information and actions from several teams and existing systems.
 
@@ -45,20 +44,33 @@ The core problem ParcelResolve addresses is:
 
 ## 3. Intended Users and Customers
 
-### Primary users
+ParcelResolve is designed as a product owned and operated within a large organization that already has its own order, delivery, warehouse, customer-service, and other operational systems.
 
-- **Customer Service Staff** — handle customer-reported incidents and intervene when required.
-- **Delivery Operations Staff** — investigate and resolve operational delivery incidents.
-- **Warehouse / Distribution Staff** — perform actions related to locating, checking, or verifying parcels.
-- **Delivery Personnel** — provide delivery information and perform relevant operational actions.
-- **Operations Managers** — monitor incident performance, workload, and operational outcomes.
+The key parties involved are:
 
-### Other users and stakeholders
+### Product Owner
 
-- **Customers / Recipients** — report incidents, provide information, and receive updates.
-- **IT / Integration Teams** — maintain the platform and its integrations.
-- **Business / Product Owners** — define product direction and measure business value.
-- **Data Protection / Security Teams** — ensure appropriate handling and protection of data.
+Owns ParcelResolve and is responsible for its product direction, priorities, and business value.
+
+### Giant / Host Organization
+
+The large e-commerce or delivery organization that uses ParcelResolve as part of its existing operational environment.
+
+This organization owns or operates the surrounding systems and processes that ParcelResolve integrates with.
+
+### Customer
+
+The person or external service provider who initiates or is involved in a parcel incident and receives relevant communication or resolution outcomes.
+
+### Operational User
+
+The internal user who works with ParcelResolve to handle incidents and perform required actions.
+
+This may include relevant operational staff such as customer service or delivery operations users.
+
+### IT / Integration Team
+
+Responsible for implementing, operating, maintaining, securing, and integrating ParcelResolve with the organization's existing systems.
 
 ---
 
@@ -66,12 +78,10 @@ The core problem ParcelResolve addresses is:
 
 > **Turn a detected parcel problem into an actionable and trackable resolution process.**
 
-ParcelResolve provides a common process for incidents originating from different sources, including:
+For the initial product concept, incidents enter ParcelResolve through two sources:
 
-- Automated system detection
-- Customer reports or feedback
-- Internal employee reports
-- Other internal systems
+1. **System-initiated incidents** — an existing system detects a condition that indicates a parcel incident.
+2. **Customer-initiated incidents** — a customer or external service provider reports a parcel problem.
 
 These incidents are converted into a standardized incident model and processed through a common resolution workflow.
 
@@ -88,7 +98,7 @@ The system aims to determine:
 
 ## 5. Main Product Goals
 
-1. Detect or receive parcel incidents from multiple sources.
+1. Detect or receive parcel incidents from the defined system-initiated and customer-initiated sources.
 2. Identify and classify incident types.
 3. Initiate appropriate resolution workflows.
 4. Reduce unnecessary manual coordination through automation.

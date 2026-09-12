@@ -8,6 +8,8 @@ The project addresses the operational problems that occur after a parcel deviate
 
 The goal is not to build another parcel tracking system. Instead, ParcelResolve focuses on the **resolution process after a delivery incident occurs**.
 
+ParcelResolve is designed as an in-house product within a large organization that already operates the surrounding order, delivery, warehouse, customer-service, and other operational systems.
+
 ---
 
 # 2. Problem Definition
@@ -23,7 +25,6 @@ A parcel may:
 - Be delivered to the wrong location
 - Be marked as delivered but not received
 - Fail to be delivered
-- Become damaged
 - Become stuck because of an operational issue
 
 When these situations occur, resolving them can involve multiple teams and operational systems.
@@ -71,11 +72,16 @@ Poorly managed delivery incidents can lead to:
 
 ParcelResolve is an **incident resolution layer** that uses the organization's existing operational data to identify and manage delivery incidents.
 
-Rather than simply storing information about an incident, the system should actively support the process of moving an incident from detection to resolution.
+For the initial product concept, incidents enter the system through two sources:
+
+1. **System-initiated incidents** — an existing system detects a condition that indicates a potential parcel incident.
+2. **Customer-initiated incidents** — a customer or external service provider reports a parcel problem.
+
+Rather than simply storing information about an incident, the system should actively support the process of moving an incident from detection or reporting to verified resolution.
 
 The core concept is:
 
-> **Detect → Understand → Act → Monitor → Resolve**
+> **Detect → Understand → Act → Monitor → Verify → Resolve**
 
 ---
 
@@ -103,8 +109,9 @@ The system can then:
 6. Track the action and its deadline.
 7. Escalate automatically if the issue is not addressed.
 8. Monitor the parcel for further activity.
-9. Close the incident when the expected resolution condition is reached.
-10. Communicate relevant updates to the customer.
+9. Verify that the expected resolution condition has been reached.
+10. Close the incident.
+11. Communicate relevant updates to the customer where appropriate.
 
 The exact rules and workflows will be determined during the requirements and design stages.
 
@@ -147,6 +154,12 @@ The organization should be able to see:
 - Whether the incident is overdue
 - How the incident was resolved
 
+### 4.7 Verification Before Closure
+
+Completing an individual action does not necessarily mean that the incident itself is resolved.
+
+The system should verify the applicable resolution condition before closing the incident.
+
 ---
 
 # 5. Initial Product Boundary
@@ -164,11 +177,13 @@ It is not intended to replace the organization's existing:
 - Physical transportation
 - Payment systems
 
-These systems may provide information to ParcelResolve, while ParcelResolve focuses on what happens when the normal delivery process breaks down.
+These systems may provide information to or receive actions from ParcelResolve, while ParcelResolve focuses on what happens when the normal delivery process breaks down.
+
+The product is intended for use within one large organization rather than as a universal multi-company platform.
 
 ---
 
-# 6. Potential Incident Types
+# 6. Initial Incident Types
 
 The initial product concept may cover:
 
@@ -177,25 +192,41 @@ The initial product concept may cover:
 - Misdelivered parcels
 - Failed deliveries
 - Delivery disputes
-- Damaged parcels
-- Other delivery exceptions
+- Other relevant delivery exceptions
+
+**Damaged parcels are not part of the current product scope.**
 
 The final set of supported incident types will be determined during requirements analysis.
 
 ---
 
-# 7. Potential Users
+# 7. Product Parties and Users
 
-The system may involve:
+ParcelResolve is developed and operated within a large organization.
 
-- Customers
-- Customer service staff
-- Delivery operations teams
-- Warehouse/distribution staff
-- Delivery personnel
-- Operations managers
+The main parties and roles are:
 
-The precise roles, permissions, and responsibilities remain to be defined.
+### Product Owner
+
+Owns ParcelResolve and is responsible for product direction, priorities, and business value.
+
+### Host / Customer Organization
+
+The large e-commerce or delivery organization that uses ParcelResolve within its existing operational environment.
+
+### Customer
+
+The external customer or service provider who may initiate a parcel incident and receive relevant communication or resolution outcomes.
+
+### Operational User
+
+The internal user who works with ParcelResolve to handle incidents and perform required actions.
+
+### IT / Integration Team
+
+Responsible for implementing, operating, maintaining, securing, and integrating ParcelResolve with the organization's existing systems.
+
+The precise operational roles, permissions, and responsibilities will be defined during requirements analysis.
 
 ---
 
@@ -210,11 +241,14 @@ The following have been established:
 - The distinction between delivery/tracking and incident resolution
 - The initial product boundary
 - The automation-first direction
+- The two initial incident sources: system-initiated and customer-initiated
+- The main product parties and user groups
+- The exclusion of damaged parcels from the current scope
 
 The following remain open:
 
 - Detailed workflows
-- Supported incident types
+- Final supported incident types
 - Automation rules
 - External/internal system integrations
 - Human intervention boundaries
