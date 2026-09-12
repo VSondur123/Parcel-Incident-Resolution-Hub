@@ -1,0 +1,1223 @@
+\documentclass[11pt,a4paper]{article}
+
+% ------------------------------------------------
+% Packages
+% ------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[
+    top=2.1cm,
+    bottom=2.1cm,
+    left=2.2cm,
+    right=2.2cm
+]{geometry}
+
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+% ------------------------------------------------
+% Document appearance
+% ------------------------------------------------
+\definecolor{accent}{HTML}{1F4E79}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=accent,
+    urlcolor=accent
+}
+
+\raggedbottom
+
+% ------------------------------------------------
+% Paragraph formatting
+% ------------------------------------------------
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.45em}
+
+% ------------------------------------------------
+% Section formatting
+% ------------------------------------------------
+\titleformat{\section}
+    {\large\bfseries}
+    {}
+    {0pt}
+    {}
+
+\titlespacing*{\section}
+    {0pt}
+    {1.1em}
+    {0.35em}
+
+\titleformat{\subsection}
+    {\normalsize\bfseries}
+    {}
+    {0pt}
+    {}
+
+\titlespacing*{\subsection}
+    {0pt}
+    {0.75em}
+    {0.2em}
+
+% ------------------------------------------------
+% Lists
+% ------------------------------------------------
+\setlist[itemize]{
+    leftmargin=1.5em,
+    itemsep=0.15em,
+    topsep=0.15em,
+    parsep=0pt,
+    partopsep=0pt
+}
+
+\setlist[enumerate]{
+    leftmargin=1.7em,
+    itemsep=0.2em,
+    topsep=0.15em,
+    parsep=0pt,
+    partopsep=0pt
+}
+
+% ------------------------------------------------
+% Header / Footer
+% ------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+
+\lhead{\small Requirements Engineering Assignment 2}
+\rhead{\small ParcelResolve}
+
+\cfoot{\small Page \thepage\ of \pageref{LastPage}}
+
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ------------------------------------------------
+% Document
+% ------------------------------------------------
+\begin{document}
+
+% =================================================
+% HEADER INFORMATION
+% =================================================
+
+\begin{center}
+    {\Large\bfseries Requirements Engineering Assignment 2}
+
+    \vspace{0.2cm}
+
+    {\large\bfseries ParcelResolve}
+
+    \vspace{0.15cm}
+
+    Product Vision, Scope and Stakeholder Analysis
+\end{center}
+
+\vspace{0.35cm}
+
+\begin{tabular}{@{}ll@{}}
+\textbf{Group Name:} & Varun \& Thanh \\
+\textbf{Students:}   & Varun Ganesh Sondur \\
+                     & Pham Thanh
+\end{tabular}
+
+% =================================================
+% A. PRODUCT VISION
+% =================================================
+
+\section{A. Product Vision}
+
+\subsection{Problem / Need}
+
+Every day, large e-commerce and delivery companies process enormous
+numbers of parcels. Most of them get delivered without any problem.
+But when something goes wrong --- a parcel gets stuck, goes missing,
+ends up at the wrong address, or the customer disputes the delivery ---
+things can get complicated fast.
+
+The issue is rarely that the organization lacks information altogether.
+Most large operators already have tracking systems, order management
+platforms, warehouse tools, and customer service software running in
+parallel. The data is often somewhere. The problem is that turning that
+data into a coordinated response is much harder than it sounds.
+
+In practice, resolving a parcel incident often means someone manually
+chasing updates across different teams, checking multiple systems, and
+figuring out who is actually responsible for taking the next step.
+Without a dedicated process to manage this, the same problems tend to
+come up repeatedly:
+
+\begin{itemize}
+    \item incidents taking longer to resolve than they should;
+    \item the same customer being asked for the same information more
+    than once;
+    \item teams unsure who owns the next action;
+    \item follow-ups being missed or delayed;
+    \item similar cases being handled differently depending on who
+    picks them up;
+    \item no real view of how many unresolved incidents are sitting
+    open at any given time;
+    \item rising operational costs from unnecessary manual work; and
+    \item customers left frustrated by slow or unclear communication.
+\end{itemize}
+
+Stated simply, the core problem is this: how does a delivery
+organization get from ``we know something went wrong with this
+parcel'' to ``this incident has been properly resolved'' in a way
+that is fast, consistent, and does not rely on manual coordination at
+every step?
+
+% ------------------------------------------------
+
+\subsection{Intended Users and Customers}
+
+ParcelResolve is designed to work as an internal platform inside a
+large e-commerce or delivery organization --- one that already has
+most of the operational tools it needs, but lacks a dedicated layer
+for managing what happens when a parcel incident occurs.
+
+The main parties involved are:
+
+\begin{itemize}
+
+    \item \textbf{Host / Customer Organization:}
+    The business that deploys and runs ParcelResolve. It owns the
+    surrounding systems and infrastructure and is ultimately
+    responsible for how incidents are handled.
+
+    \item \textbf{Product Owner:}
+    The person or role that sets the direction for ParcelResolve,
+    decides what gets built and when, and is accountable for whether
+    the product actually delivers value.
+
+    \item \textbf{External Delivery Stakeholders:}
+    The external parties directly involved in or affected by a parcel
+    incident. This includes the sender, recipient, and, where relevant,
+    a third-party logistics or delivery service provider.
+
+    \item \textbf{Operational User:}
+    Internal staff who use ParcelResolve day to day --- customer
+    service agents, warehouse teams, delivery operations, and anyone
+    else who needs to act on or investigate an incident.
+
+    \item \textbf{IT / Integration Team:}
+    The technical team that builds, connects, maintains, and secures
+    ParcelResolve within the organization's existing technical
+    environment.
+
+\end{itemize}
+
+% ------------------------------------------------
+
+\subsection{Main Value}
+
+The core value proposition of ParcelResolve is straightforward:
+
+\begin{quote}
+\textbf{Turn a detected parcel problem into an actionable and
+trackable resolution process.}
+\end{quote}
+
+This is not meant to be another tracking tool or a generic support
+ticket system. The idea is that ParcelResolve sits on top of the
+organization's existing systems and takes over once something goes
+wrong --- pulling in the information that already exists and
+coordinating what needs to happen next.
+
+An incident can enter ParcelResolve from two main sources:
+
+\begin{enumerate}
+    \item \textbf{System-initiated:}
+    An existing operational system flags a potential issue
+    automatically --- for example, a parcel that has not moved for
+    an unusually long time.
+
+    \item \textbf{Customer-initiated:}
+    A customer reports a problem with their delivery. This can happen
+    directly through a customer-facing channel or through a customer
+    service agent who creates the incident on the customer's behalf.
+\end{enumerate}
+
+Regardless of how an incident comes in, it goes through the same
+standardized process. What the system needs to be able to answer at
+any point is:
+
+\begin{itemize}
+    \item what kind of incident is this?
+    \item what should happen next, and who is responsible for it?
+    \item has the required action actually been completed?
+    \item has the underlying problem actually been fixed?
+\end{itemize}
+
+% ------------------------------------------------
+
+\subsection{Main Goals}
+
+ParcelResolve should be able to:
+
+\begin{enumerate}
+    \item take in parcel incidents from the supported sources and
+    convert them into a consistent internal format;
+
+    \item assess and classify each incident into a supported category
+    so the right workflow can be applied;
+
+    \item run the appropriate resolution workflow based on the incident
+    type and the organization's business rules;
+
+    \item reduce the need for manual coordination wherever automation
+    can safely handle it;
+
+    \item make it clear at all times who is responsible for the next
+    required action;
+
+    \item track each incident and its associated actions from start
+    to finish;
+
+    \item keep an eye on deadlines, overdue actions, and incidents
+    that have been open too long;
+
+    \item escalate cases when predefined thresholds or conditions are
+    not met;
+
+    \item handle customer communication appropriately throughout the
+    resolution process;
+
+    \item only close an incident once the resolution has actually been
+    verified, not just when an action has been completed; and
+
+    \item give the organization visibility into recurring patterns,
+    resolution performance, and operational bottlenecks.
+\end{enumerate}
+
+% ------------------------------------------------
+
+\subsection{Product Vision Statement}
+
+\begin{quote}
+\textit{ParcelResolve aims to be a reliable incident-resolution
+platform that helps large e-commerce and delivery organizations catch
+parcel problems early, coordinate the right response, and close
+incidents properly --- with as little unnecessary manual effort as
+possible.}
+\end{quote}
+
+
+% =================================================
+% B. INITIAL PRODUCT SCOPE
+% =================================================
+
+\section{B. Initial Product Scope}
+
+\subsection{Scope Definition}
+
+ParcelResolve is an internal parcel incident resolution platform
+built for large e-commerce and delivery organizations.
+
+Its scope covers everything from the moment a problem is detected or
+reported, through the investigation and resolution steps, to the point
+where the incident is verified as resolved and formally closed.
+
+The general flow looks like this:
+
+\begin{center}
+\textbf{
+Detect
+$\rightarrow$
+Understand
+$\rightarrow$
+Act
+$\rightarrow$
+Monitor
+$\rightarrow$
+Verify Resolution
+$\rightarrow$
+Close
+}
+\end{center}
+
+The exact steps within this flow will vary depending on the incident
+type and the applicable business rules.
+
+% ------------------------------------------------
+
+\subsection{Main Capabilities Within Scope}
+
+\textbf{Incident Initiation}
+
+ParcelResolve needs to be able to receive incidents from two main
+sources:
+
+\begin{itemize}
+    \item incidents flagged automatically by connected operational
+    systems; and
+    \item incidents reported by customers, either directly or through
+    customer-service staff acting on their behalf.
+\end{itemize}
+
+Whatever the source, each incoming incident gets standardized into a
+common ParcelResolve format before it enters the resolution process.
+This is what allows incidents to be handled consistently, regardless
+of how they arrived.
+
+% ------------------------------------------------
+
+\textbf{Incident Assessment and Classification}
+
+Once an incident is created, ParcelResolve assesses it using
+available information from the source and from connected systems.
+The goal is to classify it into one of the supported incident
+categories:
+
+\begin{itemize}
+    \item delayed parcel;
+    \item potentially lost parcel;
+    \item misdelivered parcel;
+    \item failed delivery; and
+    \item delivery dispute.
+\end{itemize}
+
+Classification drives the rest of the process --- the wrong
+classification early on can send an incident down the wrong path,
+so this step matters more than it might look.
+
+% ------------------------------------------------
+
+\textbf{Incident Information and Status Management}
+
+ParcelResolve maintains the working information needed to manage
+each incident over its lifetime. This includes things like:
+
+\begin{itemize}
+    \item parcel identifier and relevant order reference;
+    \item incident type and current status;
+    \item where the incident came from;
+    \item relevant delivery events pulled from integrated systems;
+    \item who is responsible for what;
+    \item required actions and their deadlines;
+    \item how the incident was resolved; and
+    \item a full history of changes and actions taken.
+\end{itemize}
+
+The intent is to give anyone working on an incident a clear and
+up-to-date picture of where things stand. This is not intended to
+turn into a general document archive or an order-management system.
+
+% ------------------------------------------------
+
+\textbf{Resolution Workflow Management}
+
+ParcelResolve manages predefined resolution workflows that are
+triggered based on incident type and business rules. These workflows
+define what steps are needed and what conditions must be met before
+the incident can move forward toward closure.
+
+% ------------------------------------------------
+
+\textbf{Action and Responsibility Management}
+
+One of the recurring problems in manual incident handling is that
+nobody is quite sure whose job it is to do the next thing. ParcelResolve
+addresses this by creating and tracking specific actions, each with
+a clearly assigned owner, a priority level, a deadline, and a
+completion status.
+
+% ------------------------------------------------
+
+\textbf{Evidence Capture and Retrieval}
+
+For delivery disputes in particular, it is not enough to just track
+what happened --- there needs to be documented evidence to support
+the resolution decision. ParcelResolve therefore supports the capture
+and retrieval of relevant evidence, which may include:
+
+\begin{itemize}
+    \item delivery photographs;
+    \item signature records;
+    \item GPS coordinates at the point of delivery;
+    \item system-generated timestamps and event logs; and
+    \item supporting information submitted by operational staff or
+    pulled from integrated systems.
+\end{itemize}
+
+This capability is needed to ensure that dispute outcomes are
+defensible and consistent. ParcelResolve is not intended to become
+a primary storage system for this evidence --- it links to and
+surfaces relevant records from where they already exist.
+
+% ------------------------------------------------
+
+\textbf{Monitoring and Follow-up}
+
+ParcelResolve keeps track of active incidents and their associated
+actions on an ongoing basis. This means watching for things like:
+
+\begin{itemize}
+    \item deadlines that are getting close;
+    \item actions that have gone overdue;
+    \item incidents that have been open longer than expected;
+    \item new information arriving from connected systems; and
+    \item conditions that suggest the incident may need a different
+    approach, or that resolution might already have been achieved.
+\end{itemize}
+
+% ------------------------------------------------
+
+\textbf{Escalation Management}
+
+When things are not moving as they should, ParcelResolve escalates.
+Escalation might mean reassigning the incident to a more senior team,
+raising the priority, sending a notification, or switching the
+incident to a different workflow. The specific rules for when and
+how escalation happens will be defined later as part of the detailed
+requirements work.
+
+% ------------------------------------------------
+
+\textbf{Customer Communication}
+
+Customers affected by a parcel incident should not be left in the
+dark. ParcelResolve supports outbound communication at appropriate
+points in the process, for example:
+
+\begin{itemize}
+    \item confirming that the incident has been received;
+    \item asking for additional information when needed;
+    \item providing a progress update;
+    \item explaining what happens next; and
+    \item confirming that the issue has been resolved.
+\end{itemize}
+
+The specific channels and the degree of automation will be worked
+out in later requirements stages.
+
+% ------------------------------------------------
+
+\textbf{Resolution Verification and Closure}
+
+An important design principle for ParcelResolve is that completing
+an action is not the same as resolving the incident. For example,
+if a warehouse locates a missing parcel, the incident should stay
+open until that parcel has been confirmed back in the delivery
+process and is on its way to the customer.
+
+Only once the applicable resolution conditions have been verified
+should the incident be formally closed.
+
+% ------------------------------------------------
+
+\textbf{Operational Insights}
+
+ParcelResolve should give the organization a useful view of how
+incident resolution is actually performing. This might include
+information like:
+
+\begin{itemize}
+    \item how many incidents are open and of what type;
+    \item average time to resolution;
+    \item incidents that are overdue or escalated;
+    \item patterns in recurring problems; and
+    \item resolution outcomes over time.
+\end{itemize}
+
+The exact scope of reporting and analytics will be refined as the
+project progresses.
+
+% ------------------------------------------------
+
+\subsection{Initial Incident Coverage}
+
+For the initial version, ParcelResolve will focus on:
+
+\begin{itemize}
+    \item delayed parcels;
+    \item potentially lost parcels;
+    \item misdelivered parcels;
+    \item failed deliveries; and
+    \item delivery disputes.
+\end{itemize}
+
+The final MVP incident set will be confirmed once requirements are
+further developed.
+
+% ------------------------------------------------
+
+\subsection{Integration Boundary}
+
+ParcelResolve does not replace the organization's existing operational
+systems. Instead, it consumes relevant data from them and coordinates
+the resolution process on top of them.
+
+Systems that ParcelResolve is likely to integrate with include:
+
+\begin{itemize}
+    \item order management systems;
+    \item parcel tracking systems;
+    \item warehouse management systems;
+    \item delivery and driver systems;
+    \item customer service systems; and
+    \item other internal operational platforms as needed.
+\end{itemize}
+
+The specific interfaces and data formats will be defined during
+later requirements and architecture work.
+
+% ------------------------------------------------
+
+\subsection{Out of Scope}
+
+The following areas are not part of the initial product scope:
+
+\begin{itemize}
+    \item order creation and order management;
+    \item core parcel tracking infrastructure;
+    \item warehouse management;
+    \item route optimization and driver navigation;
+    \item shipment creation and label generation;
+    \item physical transportation or physical parcel recovery;
+    \item payment processing and compensation workflows;
+    \item damaged-parcel handling;
+    \item wholesale replacement of customer service or operational
+    staff; and
+    \item multi-company or third-party resolution platforms.
+\end{itemize}
+
+ParcelResolve may need to connect to some of these areas, but it
+does not take over their core functions. In particular, damaged
+parcels remain outside the initial incident types. If damage is
+discovered during another type of incident, the case may require
+human escalation, and the exact handling of such mixed incidents
+will be addressed in later requirements work.
+
+% ------------------------------------------------
+
+\subsection{Product Boundary}
+
+\textbf{ParcelResolve begins when:} a parcel incident is detected,
+reported, or received from a connected system.
+
+\textbf{ParcelResolve ends when:} the incident has been verified as
+resolved and is formally closed.
+
+Everything in between --- assessing the incident, coordinating the
+response, tracking progress, and confirming resolution --- is within
+scope.
+
+% ------------------------------------------------
+
+\subsection{Scope Principle}
+
+\begin{quote}
+\textbf{ParcelResolve is for resolving parcel incidents. It is not
+trying to replace the organization's order, tracking, warehouse,
+delivery, or customer-service systems.}
+\end{quote}
+
+
+% =================================================
+% C. STAKEHOLDER ANALYSIS
+% =================================================
+
+\section{C. Stakeholder Analysis}
+
+\subsection{Stakeholder Overview}
+
+ParcelResolve touches both business and technical stakeholders, and
+their expectations are not always aligned. Some care mostly about
+speed, others about accuracy or cost, and others about technical
+reliability. Understanding these differences early is important
+because they will shape requirements that are genuinely in tension
+with each other.
+
+% ------------------------------------------------
+
+\subsection{ST-001: Host / Customer Organization}
+
+\textbf{Role / Interest:}
+
+This is the organization that decides to use ParcelResolve and
+integrates it into its operations. It has the most at stake in
+terms of overall business outcomes and is the one that will feel
+the benefit or the cost most directly.
+
+\textbf{Goals:}
+
+\begin{itemize}
+    \item lower the cost and effort involved in resolving incidents;
+    \item get incidents resolved faster and more consistently;
+    \item improve the experience for customers affected by delivery
+    problems;
+    \item cut down on repetitive manual coordination work;
+    \item have better visibility into what types of problems are
+    recurring; and
+    \item connect incident resolution more effectively with existing
+    operations.
+\end{itemize}
+
+\textbf{Concerns:}
+
+\begin{itemize}
+    \item automated decisions that turn out to be wrong;
+    \item the cost of building and running the system;
+    \item whether staff will actually adopt it;
+    \item disruption to processes that currently work well enough;
+    \item data security and protection of personal data; and
+    \item ending up with a system that is more complex than the
+    problem it was meant to solve.
+\end{itemize}
+
+\textbf{Influence: High}
+
+% ------------------------------------------------
+
+\subsection{ST-002: Product Owner}
+
+\textbf{Role / Interest:}
+
+The Product Owner is responsible for making sure ParcelResolve is
+built in the right direction and that the work being done actually
+creates value. This means making tough calls about scope and priority.
+
+\textbf{Goals:}
+
+\begin{itemize}
+    \item make sure the product addresses a real and meaningful
+    operational problem;
+    \item focus development on the capabilities that matter most;
+    \item keep the scope manageable so the team can deliver
+    something useful;
+    \item support adoption within the organization; and
+    \item show measurable improvement in how incidents are handled.
+\end{itemize}
+
+\textbf{Concerns:}
+
+\begin{itemize}
+    \item scope creep pulling the product in too many directions;
+    \item rising development costs;
+    \item low uptake from operational staff;
+    \item automation that does not justify its complexity; and
+    \item building features that look good on paper but do not
+    match how the organization actually works.
+\end{itemize}
+
+\textbf{Influence: High}
+
+% ------------------------------------------------
+
+\subsection{ST-003: External Delivery Stakeholders}
+
+\textbf{Role / Interest:}
+
+This stakeholder category covers the external parties directly
+affected by a parcel incident. The main roles are the sender,
+recipient, and, where relevant, a third-party logistics or delivery
+service provider.
+
+The sender and recipient have different information and may have
+different expectations:
+
+\begin{itemize}
+    \item \textbf{Sender:} The party that originally dispatched the
+    parcel. They may have proof of dispatch, declared value, and
+    information about what was sent. Their concerns may include
+    whether the parcel was handled correctly and whether compensation
+    or another remedy is appropriate.
+
+    \item \textbf{Recipient:} The intended receiver. They are often
+    the person most directly affected by a failed, delayed, or
+    disputed delivery. Their main concern is usually receiving the
+    parcel or getting a clear outcome when that is no longer possible.
+\end{itemize}
+
+Both roles share the same basic interest: a quick, fair outcome
+with clear communication. However, their different information
+positions should be considered when requirements for communication,
+verification, and evidence collection are developed.
+
+\textbf{Goals:}
+
+\begin{itemize}
+    \item get the issue resolved as quickly as possible;
+    \item receive accurate information about what is happening;
+    \item not have to repeat themselves every time they contact
+    support;
+    \item be treated consistently and fairly; and
+    \item understand clearly what the outcome is and why.
+\end{itemize}
+
+\textbf{Concerns:}
+
+\begin{itemize}
+    \item resolution taking too long;
+    \item being asked for the same information repeatedly;
+    \item the incident being classified incorrectly from the start;
+    \item automated responses that do not fit the actual situation;
+    and
+    \item poor or unclear communication throughout the process.
+\end{itemize}
+
+\textbf{Influence: Medium}
+
+% ------------------------------------------------
+
+\subsection{ST-004: Operational User}
+
+\textbf{Role / Interest:}
+
+Operational users are the internal staff who actually work within
+ParcelResolve on a daily basis --- customer service agents,
+warehouse staff, delivery operations teams, and anyone else who
+needs to take action on or investigate an incident. They are the
+ones who will feel most directly whether the system helps or
+gets in the way.
+
+\textbf{Goals:}
+
+\begin{itemize}
+    \item know clearly what they need to do and when;
+    \item spend less time on repetitive coordination tasks;
+    \item trust that the information the system shows them is
+    accurate;
+    \item have a clear view of which incidents are overdue or
+    escalated; and
+    \item be able to handle unusual situations without having to
+    work around the system.
+\end{itemize}
+
+\textbf{Concerns:}
+
+\begin{itemize}
+    \item automation making the wrong call in edge cases;
+    \item information from integrated systems being incomplete or
+    unreliable;
+    \item responsibility for actions being unclear;
+    \item the system adding to their workload instead of reducing
+    it; and
+    \item not being able to handle real situations that the system
+    was not designed for.
+\end{itemize}
+
+\textbf{Influence: High}
+
+% ------------------------------------------------
+
+\subsection{ST-005: IT / Integration Team}
+
+\textbf{Role / Interest:}
+
+This is the team responsible for building, connecting, running,
+and maintaining ParcelResolve from a technical standpoint. They are
+the ones who have to make the integrations work in practice, keep
+the system available, and deal with anything that breaks.
+
+\textbf{Goals:}
+
+\begin{itemize}
+    \item build integrations with existing systems that are
+    reliable and maintainable;
+    \item keep the system available and stable in production;
+    \item design an architecture that can be understood and
+    maintained by future team members;
+    \item protect customer and organizational data; and
+    \item avoid accumulating unnecessary technical complexity.
+\end{itemize}
+
+\textbf{Concerns:}
+
+\begin{itemize}
+    \item how difficult and fragile the integrations turn out to be;
+    \item poor data quality coming from existing systems;
+    \item changes in external systems breaking existing integrations;
+    \item maintenance burden growing over time;
+    \item security vulnerabilities introduced through data exchange;
+    \item unclear boundaries between what ParcelResolve owns and
+    what the integrated systems own; and
+    \item data-protection requirements, including GDPR, given that
+    the system handles personal data such as customer names,
+    delivery addresses, and delivery history.
+\end{itemize}
+
+GDPR and other data-protection obligations are an organizational
+responsibility. The IT / Integration Team is an important stakeholder
+in implementing the technical controls needed to meet those
+requirements.
+
+\textbf{Influence: High}
+
+% ------------------------------------------------
+
+\subsection{Stakeholder Conflicts and Tensions}
+
+Several tensions emerged from looking at these stakeholders together.
+They are worth naming explicitly because they will come up during
+requirements work.
+
+\begin{itemize}
+
+    \item \textbf{Customer vs.\ Host Organization:}
+    Customers want the fastest possible resolution, but the
+    organization may need verification steps or cost controls before
+    certain actions can be approved.
+
+    \item \textbf{Automation vs.\ Operational User:}
+    Increased automation is good for the organization, but
+    operational staff need to be able to trust the system's
+    decisions --- and have a way to override them when the situation
+    does not fit the standard pattern.
+
+    \item \textbf{Product Owner vs.\ Host Organization:}
+    Different parts of the organization will want different things
+    from ParcelResolve. The Product Owner's job is to keep the scope
+    focused, which will inevitably mean saying no to some requests.
+
+    \item \textbf{Host Organization vs.\ IT / Integration Team:}
+    The business side will often want things delivered quickly.
+    The technical team also needs to think about how easy the result
+    will be to maintain and operate, which sometimes means pushing
+    back on the timeline.
+
+    \item \textbf{Customer vs.\ Operational User:}
+    A customer might want an immediate answer or resolution, while
+    the operational user handling the case may genuinely need to
+    investigate before they can give one.
+
+\end{itemize}
+
+% ------------------------------------------------
+
+\subsection{Stakeholder Priority}
+
+For the initial development phase, the highest-priority stakeholders
+are:
+
+\begin{itemize}
+    \item Host / Customer Organization;
+    \item Product Owner;
+    \item Operational User; and
+    \item External Delivery Stakeholders.
+\end{itemize}
+
+The IT / Integration Team is treated as a critical supporting
+stakeholder. Their input matters particularly early on, since
+ParcelResolve depends entirely on reliable data from systems that
+the IT team owns and maintains.
+
+% ------------------------------------------------
+
+\subsection{Key Stakeholder Insight}
+
+One thing that becomes clear from this analysis is that ParcelResolve
+cannot simply optimize for speed. Speed matters, but so do accuracy,
+fairness, accountability, operational effort, automation quality,
+data security, and the ability to maintain the system over time.
+
+Many of the requirements tensions that will come up in later stages
+trace back to this. A decision that improves resolution speed might
+increase operational user workload or introduce automation risk. A
+decision that protects customer fairness might slow down the
+resolution timeline. These are genuine trade-offs, not problems that
+can be designed away.
+
+
+% =================================================
+% D. TOOL-SUPPORTED ANALYSIS
+% =================================================
+
+\section{D. Tool-Supported Analysis}
+
+\subsection{Tool Used and Interaction}
+
+The AI tool used for this section was \textbf{Claude} (claude.ai,
+developed by Anthropic). After completing the initial product vision,
+scope, and stakeholder analysis, we provided the full draft to
+Claude and asked it to:
+
+\begin{itemize}
+    \item look for missing stakeholders or gaps in the stakeholder
+    analysis;
+    \item identify scope gaps or underspecified areas;
+    \item flag incorrect assumptions or things that might cause
+    problems in later requirements work; and
+    \item suggest anything else it considered relevant for an
+    incident-resolution system of this kind.
+\end{itemize}
+
+\subsection{Significant Tool Observations and Suggestions}
+
+The tool returned several observations. We assigned each a reference
+identifier to make it easier to discuss them in Section E.
+
+\textbf{[T-01] Stakeholder granularity: Sender versus Recipient}
+
+Claude pointed out that ST-003 grouped parties together whose
+interests and available information are meaningfully different.
+The sender knows what was shipped and may have proof of dispatch,
+while the recipient is usually the person directly affected by the
+delivery outcome. The tool suggested treating them as separate
+stakeholders because their communication and verification
+requirements could differ.
+
+\textbf{[T-02] Scope gap: Audit trail and evidence management}
+
+For delivery disputes specifically, Claude noted that our scope did
+not explicitly mention evidence capture. To resolve a dispute
+consistently, there needs to be access to documented evidence ---
+for example delivery photos, GPS data, signature records, and system
+timestamps. Without this, dispute resolution could become
+inconsistent or difficult to justify.
+
+\textbf{[T-03] Scope suggestion: Compensation and remediation
+workflow}
+
+Claude suggested adding a compensation or refund-initiation
+capability, on the grounds that many parcel incidents ultimately
+result in some form of compensation. It argued that a system that
+tracks incidents to resolution could also trigger this next step.
+
+\textbf{[T-04] Regulatory consideration: Data protection}
+
+The tool observed that no regulatory or compliance stakeholder
+appeared explicitly in our analysis. It noted that ParcelResolve
+would handle personal data such as customer names, addresses, and
+delivery history, making data protection and GDPR relevant.
+
+\textbf{[T-05] Missing measurable success criteria}
+
+Claude noted that the product vision does not include measurable
+targets, such as a target mean time to resolution or a first-contact
+resolution rate. Without targets, it would be harder to evaluate
+whether ParcelResolve has achieved its intended results.
+
+\textbf{[T-06] Potential resolution gap from the damaged-parcel
+exclusion}
+
+The tool questioned whether excluding damaged-parcel handling could
+leave a gap. It noted that damage might sometimes be discovered
+during what started as a lost or delayed parcel case, and asked
+whether ParcelResolve should define how such mixed incidents are
+handled.
+
+% =================================================
+% E. COMPARISON AND REVISION
+% =================================================
+
+\section{E. Comparison and Revision}
+
+\subsection{Overview}
+
+We went through each tool suggestion and compared it against our
+initial analysis. For each one, we decided whether it identified
+something genuinely missing, something we had already considered but
+not made explicit, something that is valid but not yet actionable,
+or something we disagree with.
+
+\subsection{Assessment of Tool Suggestions}
+
+\textbf{[T-01] Sender versus Recipient distinction --- Modified}
+
+The observation is useful. Senders and recipients do hold different
+information and can have different priorities when a parcel incident
+occurs. The sender may have information about dispatch and shipment
+contents, while the recipient is usually closer to the actual
+delivery experience.
+
+However, splitting them into two completely separate stakeholder
+entries felt premature at this stage. Both roles ultimately share
+the same high-level interest --- a fair and clear resolution ---
+and separating them now would add complexity without much benefit.
+
+\textit{Revision:} We revised ST-003 to describe the sender and
+recipient as distinct roles within one external stakeholder category.
+Their different information positions will be considered when
+defining communication, verification, and evidence requirements
+later.
+
+\textbf{[T-02] Audit trail and evidence management --- Accepted}
+
+This was a genuine gap. Delivery disputes are included in our
+initial incident coverage, but our scope description did not
+explicitly mention the need to capture and retrieve supporting
+evidence. Once delivery disputes are included, evidence becomes
+important for making the resolution process consistent and
+defensible.
+
+\textit{Revision:} We added \textit{Evidence capture and retrieval}
+as an explicit in-scope capability in Section~B.
+
+\textbf{[T-03] Compensation and remediation workflow --- Deferred}
+
+The suggestion is understandable. Many incidents may eventually
+lead to compensation or another form of remediation. However,
+initiating compensation or refunds involves financial authorization,
+payment systems, and approval workflows that are outside the current
+product boundary. Payment processing is already listed as out of
+scope.
+
+We therefore decided not to expand the product scope around this
+suggestion yet. It can be revisited once the organization's
+financial and compensation processes are better understood.
+
+\textbf{[T-04] Data protection and GDPR --- Modified}
+
+The tool is right that GDPR is relevant here. ParcelResolve will
+handle personal data, so data protection needs to be considered
+from the requirements stage onward.
+
+We did not add a separate compliance stakeholder, because the
+current stakeholder model is focused on the main roles directly
+involved in operating and developing the product. Instead, we made
+data protection an explicit concern for both the Host Organization
+and the IT / Integration Team, while recognizing that overall
+compliance is an organizational responsibility.
+
+\textit{Revision:} GDPR and data-protection concerns were made
+explicit in the stakeholder analysis, with the IT / Integration
+Team identified as an important technical stakeholder rather than
+the sole owner of the responsibility.
+
+\textbf{[T-05] Measurable success criteria --- Deferred}
+
+The point is fair from a requirements-engineering standpoint.
+Measurable targets would make it easier to evaluate whether the
+product is actually improving incident resolution.
+
+However, targets such as resolution time or first-contact
+resolution should ideally be based on the organization's existing
+operational data. We do not have those baselines yet.
+
+\textit{Decision:} We deferred measurable success criteria to a
+later stage when goals, baselines, and priorities can be defined
+with more information.
+
+\textbf{[T-06] Damaged-parcel resolution gap --- Rejected}
+
+We deliberately excluded damaged-parcel handling from the initial
+scope, and after reviewing the suggestion, we decided to keep that
+boundary.
+
+The concern about damage being discovered during another incident
+is valid, but we do not think it requires adding damaged-parcel
+handling to the initial product. Instead, such cases can be
+identified as exceptions and escalated to a human operational user.
+
+The exact handling of mixed incidents involving damage can be
+defined later when the incident taxonomy and escalation rules are
+developed in more detail.
+
+\subsection{Summary of Revisions Made}
+
+The tool interaction led to several concrete changes to the initial
+analysis:
+
+\begin{itemize}
+
+    \item \textbf{ST-003 revised} in Section~C to describe sender
+    and recipient as distinct roles within one external stakeholder
+    category.
+
+    \item \textbf{Evidence capture and retrieval} added as an
+    explicit in-scope capability in Section~B.
+
+    \item \textbf{GDPR and data protection} made explicit in the
+    stakeholder analysis, while keeping responsibility at the
+    organizational level rather than assigning it only to IT.
+
+    \item \textbf{Incident sources clarified} so that there are two
+    main sources: system-initiated and customer-initiated. Customer
+    service can submit a customer-initiated incident on the
+    customer's behalf.
+
+    \item \textbf{Product lifecycle clarified} as
+    Detect $\rightarrow$ Understand $\rightarrow$ Act
+    $\rightarrow$ Monitor $\rightarrow$ Verify Resolution
+    $\rightarrow$ Close.
+
+\end{itemize}
+
+The compensation suggestion and measurable success criteria were
+deferred to later requirements work. The damaged-parcel suggestion
+was rejected because damaged-parcel handling remains outside the
+initial scope, although mixed incidents involving damage are
+recognized as a future requirements issue.
+
+
+% =================================================
+% F. TOOL REFLECTION
+% =================================================
+
+\section{F. Tool Reflection}
+
+\renewcommand{\arraystretch}{1.6}
+\noindent
+\begin{tabular}{@{} p{4.2cm} p{10.3cm} @{}}
+\hline
+\textbf{Field} & \textbf{Response} \\
+\hline
+
+\textbf{1.\ Tool / AI Used}
+&
+Claude (claude.ai, Anthropic) \\[0.4em]
+
+\textbf{2.\ Tool Output / Suggestion}
+&
+Claude suggested splitting ST-003 into two separate stakeholders:
+the \textit{sender}, who has information about the shipment and
+proof of dispatch, and the \textit{recipient}, who is usually closer
+to the actual delivery circumstances. The suggestion was that the
+two roles could have different communication and verification needs.
+\\[0.4em]
+
+\textbf{3.\ Decision Taken}
+&
+Modify \\[0.4em]
+
+\textbf{4.\ Primary Reason Category}
+&
+Stakeholder need / Requirement quality \\[0.4em]
+
+\textbf{5.\ Justification}
+&
+The distinction Claude raised is useful because senders and
+recipients do have different information and may need different
+things from the resolution process. This could become important
+when defining detailed requirements for communication, evidence,
+and verification.
+
+However, separating them into two full stakeholder entries at this
+stage would make the stakeholder model more complicated than it
+needs to be. At the current level of analysis, both roles share the
+same basic expectation of a fair, clear, and timely resolution.
+
+We therefore modified the original stakeholder instead of fully
+splitting it. ST-003 now explicitly describes the sender and
+recipient as different roles and records why the distinction may
+matter later. This keeps the useful part of the tool's suggestion
+without adding unnecessary structure to the current analysis.
+\\[0.4em]
+
+\hline
+\end{tabular}
+
+\renewcommand{\arraystretch}{1}
+
+\vspace{1.2em}
+
+\noindent\textbf{AI Assistance Disclosure}
+
+\noindent\textit{AI assistance (Claude, claude.ai) was used to help
+organise and review the product vision, scope, and stakeholder
+analysis, particularly in Sections D, E, and F. The project
+definition, scope decisions, stakeholder analysis, and final
+decisions were discussed and reviewed by the group. Tool suggestions
+were not accepted automatically; they were considered against the
+current project scope and either accepted, modified, deferred, or
+rejected based on our own reasoning.}
+
+\end{document}
