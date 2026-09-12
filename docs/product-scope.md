@@ -11,15 +11,12 @@ Incidents may originate from:
 - automated system detection;
 - customer reports or feedback;
 - customer service staff;
-- delivery operations staff;
-- warehouse or distribution staff;
-- other internal systems.
 
 All incident sources converge into a standardized ParcelResolve incident model and common resolution workflow.
 
 ### Initial lifecycle
 
-**Initiate → Assess → Classify → Resolve → Monitor → Escalate → Verify → Close**
+**Detect → Understand → Act → Monitor → Verify → Resolve**
 
 The exact workflow may vary by incident type and business rules.
 
@@ -29,9 +26,14 @@ The exact workflow may vary by incident type and business rules.
 
 ## CAP-01 — Incident Initiation
 
-ParcelResolve shall support the creation or ingestion of incidents from multiple sources, including automated detection, customer reports, internal employees, and internal systems.
+ParcelResolve shall support the creation or ingestion of parcel incidents from the two initial incident sources defined for the product:
 
-The system shall standardize incoming information into a common incident representation.
+* **System-initiated incidents**, detected automatically by existing operational systems.
+* **Customer-initiated incidents**, reported directly by customers or submitted by customer service staff on behalf of customers.
+
+The system shall standardize incoming information from these sources into a common incident representation.
+
+Regardless of the source, each incident shall enter the ParcelResolve incident-resolution process and be handled according to its classification and applicable business rules.
 
 ---
 
@@ -46,7 +48,6 @@ The system shall support classification into relevant incident types, such as:
 - misdelivered parcel;
 - failed delivery;
 - delivery dispute;
-- damaged parcel.
 
 Classification shall help determine the appropriate resolution workflow.
 
@@ -179,10 +180,6 @@ The exact reporting and analytics scope will be refined later.
 - Misdelivered parcel
 - Failed delivery
 - Delivery dispute
-
-### Secondary incident type
-
-- Damaged parcel
 
 The final MVP incident set will be confirmed as requirements are refined.
 
